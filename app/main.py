@@ -24,8 +24,8 @@ class OrderRequest(BaseModel):
     Discount_Applied: float
     Order_Quantity:   int
     Days_to_Return:   float
-    Return_Status:    str   # "Returned" or "Not Returned"
-    Return_Reason:    str   # e.g. "Changed mind", "Defective", etc.
+    Return_Status:    str   
+    Return_Reason:    str   
     User_Age:         int
 
 

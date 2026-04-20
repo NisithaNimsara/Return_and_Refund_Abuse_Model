@@ -6,9 +6,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-# Support both layouts:
-# 1) project_root/app.py + app/...
-# 2) all files in one folder (like the uploaded sample files)
 try:
     from app.pipeline import clean_and_engineer
     from app.model import predict
@@ -115,16 +112,9 @@ def predict_abuse(order: OrderRequest):
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-
-# Mount the frontend LAST so API routes above keep working.
-# Visiting http://127.0.0.1:8000 will open index.html automatically.
 app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
-
 
 if __name__ == "__main__":
     url = "http://127.0.0.1:8000"
     print(f"\nRefundGuard starting...\nOpen: {url}\n")
-    # Your project already has an `app` package, so using the import string
-    # "app:app" can import the package instead of this launcher file.
-    # Running the FastAPI object directly avoids that conflict.
     uvicorn.run(app, host="127.0.0.1", port=8000)

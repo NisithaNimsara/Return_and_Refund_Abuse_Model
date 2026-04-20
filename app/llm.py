@@ -44,8 +44,7 @@ Explain the pattern and business risk. Do not just repeat the numbers.
 
 def get_reasoning(record: dict, prediction: int, probability: float) -> str:
     """
-    Sends the prompt to Ollama and returns the LLM explanation string.
-    Falls back gracefully if Ollama is not running.
+    Sends the prompt to Ollama and returns the LLM explanation in string.
     """
     try:
         response = requests.post(

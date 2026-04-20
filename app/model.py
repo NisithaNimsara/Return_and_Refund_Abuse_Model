@@ -2,8 +2,6 @@ import joblib
 import pandas as pd
 from pathlib import Path
 
-# Load model once when the module is imported
-# Path goes up one level from app/ to find rf_model.pkl
 MODEL_PATH = Path(__file__).parent.parent / 'rf_model.pkl'
 
 rf_model = joblib.load(MODEL_PATH)

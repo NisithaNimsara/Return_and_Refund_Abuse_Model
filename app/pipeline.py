@@ -19,8 +19,6 @@ FEATURE_COLS = [
 def clean_and_engineer(raw: dict) -> dict:
     """
     Accepts a raw order dict from the API request.
-    Applies the same cleaning + feature engineering
-    as your Glue pipeline / Notebook 1.
     Returns a flat dict ready for the RF model.
     """
     # --- Type coercion ---

@@ -146,13 +146,13 @@ if __name__ == "__main__":
     for name, test_fn in tests:
         try:
             test_fn()
-            print(f"  ✅ PASSED: {name}")
+            print(f" PASSED: {name}")
             passed += 1
         except AssertionError as e:
-            print(f"  ❌ FAILED: {name} — {e}")
+            print(f" FAILED: {name} — {e}")
             failed += 1
         except Exception as e:
-            print(f"  💥 ERROR:  {name} — {e}")
+            print(f" ERROR:  {name} — {e}")
             failed += 1
 
     print(f"\n{'='*55}")
