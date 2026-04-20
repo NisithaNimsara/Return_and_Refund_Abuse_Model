@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from app.pipeline import clean_and_engineer
 from app.model import predict
 from app.llm import get_reasoning
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="Return & Refund Abuse Detection API",
@@ -10,6 +11,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # allow all origins (fine for local dev)
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Request schema ---
 class OrderRequest(BaseModel):
