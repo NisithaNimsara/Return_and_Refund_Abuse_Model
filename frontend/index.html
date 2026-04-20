@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>refund-abuse-ui</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="title-wrap">
+          <h1>Return &amp; Refund Abuse Detection</h1>
+          <p class="sub">Random Forest prediction · LLM reasoning</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="stack">
+        <div class="card">
+          <div class="card-head">
+            <p class="card-title">Order Details</p>
+          </div>
+          <div class="card-body">
+            <form id="prediction-form">
+              <div class="grid">
+                <div class="field">
+                  <label for="Product_Price">Product Price ($)</label>
+                  <input id="Product_Price" name="Product_Price" type="number" min="0" step="0.01" placeholder="e.g. 299.99" required />
+                </div>
+
+                <div class="field">
+                  <label for="Discount_Applied">Discount Applied (%)</label>
+                  <input id="Discount_Applied" name="Discount_Applied" type="number" min="0" step="0.01" placeholder="e.g. 40" required />
+                </div>
+
+                <div class="field">
+                  <label for="Order_Quantity">Order Quantity</label>
+                  <input id="Order_Quantity" name="Order_Quantity" type="number" min="1" step="1" value="1" required />
+                </div>
+
+                <div class="field">
+                  <label for="Days_to_Return">Days to Return</label>
+                  <input id="Days_to_Return" name="Days_to_Return" type="number" step="0.01" placeholder="e.g. 15" required />
+                </div>
+
+                <div class="field">
+                  <label for="User_Age">Customer Age</label>
+                  <input id="User_Age" name="User_Age" type="number" min="0" step="1" placeholder="e.g. 32" required />
+                </div>
+
+                <div class="field">
+                  <label for="Return_Status">Return Status</label>
+                  <select id="Return_Status" name="Return_Status" required>
+                    <option value="Returned">Returned</option>
+                    <option value="Not Returned">Not Returned</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="Return_Reason">Return Reason</label>
+                  <select id="Return_Reason" name="Return_Reason" required>
+                    <option value="Changed mind">Changed mind</option>
+                    <option value="Defective">Defective</option>
+                    <option value="Not as described">Not as described</option>
+                    <option value="Wrong item">Wrong item</option>
+                    <option value="Arrived late">Arrived late</option>
+                    <option value="No longer needed">No longer needed</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="primary-btn" id="submit-btn">Analyze Return</button>
+                <button type="button" class="secondary-btn" id="fill-btn">Use Example Data</button>
+                <button type="reset" class="secondary-btn" id="reset-btn">Clear</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-head">
+            <p class="card-title">Prediction Output</p>
+          </div>
+          <div class="card-body">
+            <div id="status" class="status"></div>
+
+            <div id="empty-state" class="empty">
+              Submit an order return to get the live backend prediction, abuse score, triggered signals, and the reasoning explanation.
+            </div>
+
+            <div id="summary" class="summary">
+              <div id="verdict-box" class="verdict safe">
+                <div class="verdict-top">
+                  <h2 class="verdict-title" id="verdict-text">NOT ABUSE</h2>
+                  <div class="chip" id="probability-chip">0.0%</div>
+                </div>
+                <p class="verdict-sub" id="verdict-subtext"></p>
+              </div>
+
+              <div class="stats">
+                <div class="stat">
+                  <p class="stat-label">Verdict</p>
+                  <p class="stat-value" id="stat-verdict">-</p>
+                </div>
+                <div class="stat">
+                  <p class="stat-label">Abuse Score</p>
+                  <p class="stat-value" id="stat-score">-</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="card-title" style="margin-bottom: 10px;">Triggered Signals</p>
+                <div id="signals" class="signal-list"></div>
+              </div>
+
+              <div>
+                <p class="card-title" style="margin-bottom: 10px;">Reasoning</p>
+                <div id="reasoning" class="reasoning"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </aside>
+    </main>
+  </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
