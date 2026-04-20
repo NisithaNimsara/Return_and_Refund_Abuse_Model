@@ -20,7 +20,6 @@ def print_result(label: str, response: dict):
 # -------------------------------------------------------
 # TEST 1 — High risk: 3 signals fired, expensive item
 # Expected: ABUSE, high probability
-# -------------------------------------------------------
 def test_high_risk():
     payload = {
         "Product_Price":    420.0,
@@ -42,7 +41,6 @@ def test_high_risk():
 # -------------------------------------------------------
 # TEST 2 — Low risk: 0 signals, cheap item, fast return
 # Expected: NOT ABUSE, low probability
-# -------------------------------------------------------
 def test_low_risk():
     payload = {
         "Product_Price":    49.99,
@@ -64,7 +62,6 @@ def test_low_risk():
 # -------------------------------------------------------
 # TEST 3 — Edge case: exactly 2 signals (boundary check)
 # Expected: ABUSE (threshold is >= 2)
-# -------------------------------------------------------
 def test_boundary():
     payload = {
         "Product_Price":    380.0,
@@ -86,7 +83,6 @@ def test_boundary():
 # -------------------------------------------------------
 # TEST 4 — Late return: only 1 signal, but very late
 # Expected: NOT ABUSE (only 1 signal, below threshold)
-# -------------------------------------------------------
 def test_late_only():
     payload = {
         "Product_Price":    89.99,
@@ -109,7 +105,6 @@ def test_late_only():
 # TEST 5 — Corrupt input: negative Days_to_Return
 # Pipeline should sanitise this to 0, not crash
 # Expected: no 500 error, Days_to_Return treated as 0
-# -------------------------------------------------------
 def test_corrupt_input():
     payload = {
         "Product_Price":    200.0,
