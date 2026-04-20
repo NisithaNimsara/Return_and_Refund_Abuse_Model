@@ -1,4 +1,4 @@
-# 🛡️ Return & Refund Abuse Detection — RefundGuard
+# 🛡️ Return & Refund Abuse Detection
 
 A hybrid ML + LLM pipeline that detects abusive return behaviour in e-commerce orders. A **Random Forest** model flags suspicious transactions based on engineered abuse signals, and a **local LLM (Ollama / LLaMA 3.2)** generates a human-readable explanation for each decision. A **FastAPI** backend and a vanilla-JS frontend tie everything together into a single deployable application.
 
@@ -203,9 +203,3 @@ python -m pytest app/test_api.py -v
 | Data | pandas, NumPy |
 | Frontend | Vanilla HTML / CSS / JavaScript |
 | Serialisation | joblib (model), Pydantic (API schemas) |
-
----
-
-## 📄 License
-
-This project is for educational and research purposes.
